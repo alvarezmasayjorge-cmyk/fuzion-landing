@@ -576,6 +576,30 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 .oferta-disclaimer { font-size: 0.8rem; color: var(--gris); }
 .oferta-disclaimer strong { color: var(--rojo); }
 
+.oferta-gratis-tag {
+  font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  padding: 0.5rem 1.25rem;
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 8px;
+}
+.oferta-gratis-tag strong { color: #4ade80; font-size: 1rem; }
+
+.tag-gratis {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: rgba(74,222,128,0.15);
+  border: 1px solid rgba(74,222,128,0.35);
+  color: #4ade80;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+.oferta-disclaimer strong { color: var(--rojo); }
+
 /* ========== FOOTER ========== */
 .footer { padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
 .footer .logo { align-items: center; margin-bottom: 1rem; }
