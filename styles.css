@@ -856,19 +856,15 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
   * { cursor: auto; }
   .cursor, .cursor-dot { display: none; }
 
-  /* Urgency bar — una sola línea en mobile */
+  /* Urgency bar — texto corto y legible en mobile */
   .urgency-bar {
     font-size: 0.72rem;
     padding: 0.55rem 2.5rem 0.55rem 1rem;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    overflow: hidden;
+    flex-wrap: wrap;
+    text-align: center;
+    line-height: 1.5;
   }
-  .urgency-bar p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  .urgency-bar p { white-space: normal; }
   .urgency-bar__pulse { display: none; }
 
   /* Hero */
