@@ -120,7 +120,7 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 /* ========== NAVBAR ========== */
 .navbar {
   position: fixed;
-  top: 28px;
+  top: var(--bar-h, 28px);
   width: 100%;
   z-index: 1000;
   padding: 1.25rem 0;
@@ -177,7 +177,9 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 
 /* ========== MOBILE NAV OVERLAY ========== */
 .mobile-nav-overlay {
-  position: fixed; inset: 0; z-index: 999;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 999;
   background: rgba(10,10,10,0.97);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -215,7 +217,10 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 .hero {
   min-height: 100vh; min-height: 100dvh;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 9rem 6rem 5rem;
+  padding-top: calc(var(--bar-h, 28px) + var(--nav-h, 80px) + 2rem);
+  padding-bottom: 5rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
   position: relative; gap: 4rem; overflow: hidden;
 }
 .hero-bg-gradient {
@@ -851,13 +856,28 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
   * { cursor: auto; }
   .cursor, .cursor-dot { display: none; }
 
-  /* Urgency bar */
-  .urgency-bar { font-size: 0.72rem; padding: 0.5rem 2.5rem 0.5rem 1rem; }
+  /* Urgency bar — una sola línea en mobile */
+  .urgency-bar {
+    font-size: 0.72rem;
+    padding: 0.55rem 2.5rem 0.55rem 1rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .urgency-bar p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .urgency-bar__pulse { display: none; }
 
   /* Hero */
   .hero {
     min-height: 100vh; min-height: 100dvh;
-    padding: 6rem 1.5rem 7rem;
+    padding-top: calc(var(--bar-h, 44px) + var(--nav-h, 64px) + 1.25rem);
+    padding-bottom: 7rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     flex-direction: column; justify-content: flex-end;
     align-items: flex-start; text-align: left; gap: 1.5rem;
   }

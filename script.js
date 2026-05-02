@@ -1,5 +1,21 @@
 const isMobile = () => window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
 
+// ========== OFFSET DINÁMICO DE HEADER ==========
+function updateHeaderOffsets() {
+  const bar = document.getElementById('urgencyBar');
+  const nav = document.getElementById('navbar');
+  const barH = bar && !bar.classList.contains('hidden') ? bar.getBoundingClientRect().height : 0;
+  const navH = nav ? nav.getBoundingClientRect().height : 0;
+  document.documentElement.style.setProperty('--bar-h', barH + 'px');
+  document.documentElement.style.setProperty('--nav-h', navH + 'px');
+}
+
+// Ejecutar al cargar y en cada resize
+updateHeaderOffsets();
+window.addEventListener('resize', updateHeaderOffsets, { passive: true });
+// Re-medir después de que carguen las fuentes (puede cambiar la altura)
+document.fonts?.ready.then(updateHeaderOffsets);
+
 // ========== CURSOR (desktop) ==========
 if (!isMobile()) {
   const cursor = document.createElement('div');
@@ -25,6 +41,8 @@ const navbar = document.getElementById('navbar');
 urgencyBarClose?.addEventListener('click', () => {
   urgencyBar.classList.add('hidden');
   navbar.classList.add('bar-hidden');
+  // Esperar a que la transición termine y re-medir
+  setTimeout(updateHeaderOffsets, 350);
 });
 document.getElementById('urgencyBarCta')?.addEventListener('click', openOfertaSection);
 
