@@ -45,7 +45,6 @@ urgencyBarClose?.addEventListener('click', () => {
   setTimeout(updateHeaderOffsets, 350);
 });
 document.getElementById('urgencyBarCta')?.addEventListener('click', openOfertaSection);
-document.getElementById('urgencyBarCtaMobile')?.addEventListener('click', openOfertaSection);
 
 
 // ========== NAVBAR SCROLL ==========
