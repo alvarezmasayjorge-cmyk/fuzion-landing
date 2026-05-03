@@ -21,8 +21,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="logo">
-        <span class="logo-text">FUZI<span class="logo-o">O</span>N</span>
-        <span class="logo-studio">STUDIO</span>
+        <img src="img/logo.png" alt="Fuzion Studio" style="height: 50px; width: auto;">
       </div>
       <ul class="nav-links">
         <li><a href="#servicios">Servicios</a></li>
@@ -442,7 +441,9 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container">
-      <div class="logo"><span class="logo-text">FUZI<span class="logo-o">O</span>N</span><span class="logo-studio">STUDIO</span></div>
+      <div class="logo">
+        <img src="img/logo.png" alt="Fuzion Studio" style="height: 40px; width: auto;">
+      </div>
       <p>© 2024 Fuzion Studio. Todos los derechos reservados.</p>
       <div class="footer-links">
         <a href="#servicios">Servicios</a>
@@ -515,8 +516,7 @@
 
       <div class="form-modal__left">
         <div class="logo" style="margin-bottom:1.5rem;">
-          <span class="logo-text">FUZI<span class="logo-o">O</span>N</span>
-          <span class="logo-studio">STUDIO</span>
+          <img src="img/logo.png" alt="Fuzion Studio" style="height: 50px; width: auto;">
         </div>
         <h3>Activá el sistema que <span class="highlight">vende por vos</span> 24/7</h3>
         <p class="form-modal__sub">Completá el formulario. Te respondemos en menos de 2 horas con un diagnóstico personalizado de tu marca — sin compromiso.</p>
@@ -574,26 +574,24 @@
 
   <script src="script.js"></script>
 
-<!-- MODAL VIDEO PORTAFOLIO -->
-<div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; padding: 1rem;">
-  <button onclick="cerrarVideo()" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; font-size:1.5rem; cursor:pointer; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:10;">✕</button>
-  <div id="videoWrapper" style="width:100%; max-width:420px; aspect-ratio:9/16;">
-    <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border-radius:12px;"></iframe>
+  <!-- MODAL VIDEO PORTAFOLIO -->
+  <div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; padding: 1rem;">
+    <button onclick="cerrarVideo()" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; font-size:1.5rem; cursor:pointer; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:10;">✕</button>
+    <div id="videoWrapper" style="width:100%; max-width:420px; aspect-ratio:9/16;">
+      <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border-radius:12px;"></iframe>
+    </div>
   </div>
-</div>
 
-  <script src="script.js"></script>
-  
+  <svg style="position:absolute; width:0; height:0;" aria-hidden="true">
+    <defs>
+      <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise"/>
+        <feGaussianBlur in="noise" stdDeviation="2" result="blurred"/>
+        <feDisplacementMap in="SourceGraphic" in2="blurred" scale="60" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
 </body>
-
-<svg style="position:absolute; width:0; height:0;" aria-hidden="true">
-  <defs>
-    <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise"/>
-      <feGaussianBlur in="noise" stdDeviation="2" result="blurred"/>
-      <feDisplacementMap in="SourceGraphic" in2="blurred" scale="60" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </defs>
-</svg>
 
 </html>
