@@ -98,7 +98,7 @@
     </div>
 
     <div class="hero-vsl-preview" id="vsl">
-      <div class="vsl-thumbnail" id="vslThumbnail">
+      <div class="vsl-thumbnail" id="vslThumbnail" style="background-image: url('https://img.youtube.com/vi/54qarksFQgc/maxresdefault.jpg'); background-size: cover; background-position: center;">
         <div class="vsl-overlay-text">
           <span class="vsl-label">▶ REPRODUCIR</span>
           <p>Mirá cómo convertimos marcas<br>en referentes que venden solas</p>
@@ -271,7 +271,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°1</p>
+              <p>Clínica N°1</p>
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°2</p>
+              <p>Clínica N°2</p>
             </div>
           </div>
         </div>
@@ -288,7 +288,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°3</p>
+              <p>Clínica N°3</p>
             </div>
           </div>
         </div>
@@ -297,7 +297,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°4</p>
+              <p>Clínica N°4</p>
             </div>
           </div>
         </div>
@@ -305,7 +305,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°5</p>
+              <p>Clínica N°5</p>
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@
           <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
-              <p>Clinica N°6</p>
+              <p>Clínica N°6</p>
             </div>
           </div>
         </div>
@@ -575,12 +575,12 @@
   <script src="script.js"></script>
 
 <!-- MODAL VIDEO PORTAFOLIO -->
-  <div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
-    <button onclick="cerrarVideo()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">✕</button>
-    <div style="width:90%; max-width:900px; aspect-ratio:16/9;">
-      <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border-radius:12px;"></iframe>
-    </div>
+<div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; padding: 1rem;">
+  <button onclick="cerrarVideo()" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:white; font-size:1.5rem; cursor:pointer; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:10;">✕</button>
+  <div id="videoWrapper" style="width:100%; max-width:420px; aspect-ratio:9/16;">
+    <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border-radius:12px;"></iframe>
   </div>
+</div>
 
   <script src="script.js"></script>
   

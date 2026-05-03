@@ -939,7 +939,7 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
     padding: 0.25rem 1.5rem 0.5rem; max-width: none; margin: 0;
   }
   .portafolio-grid::-webkit-scrollbar { display: none; }
-  .portafolio-card { flex: 0 0 78vw; max-width: 300px; scroll-snap-align: start; border-radius: 14px; }
+  .portafolio-card { flex: 0 0 78vw; max-width: 300px; scroll-snap-align: start; border-radius: 14px; box-shadow: none; transform: none; border: 1px solid rgba(232,0,13,0.3); }
   .portafolio-img { aspect-ratio: 4/3; }
   .portafolio-img .overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%); flex-direction: row; justify-content: flex-start; padding: 1rem; align-items: flex-end; gap: 0.6rem; }
   .carousel-dots { display: flex; }
