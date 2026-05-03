@@ -342,3 +342,35 @@ if (form) {
     }, 600);
   });
 }
+
+// Portafolio — abrir video al hacer clic
+document.querySelectorAll('.portafolio-card[data-video]').forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => {
+    const id = card.dataset.video;
+    const plataforma = card.dataset.plataforma || 'youtube';
+    const url = plataforma === 'vimeo'
+      ? `https://player.vimeo.com/video/${id}?autoplay=1`
+      : `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    document.getElementById('videoIframe').src = url;
+    const modal = document.getElementById('videoModal');
+    modal.style.display = 'flex';
+  });
+});
+
+function cerrarVideo() {
+  document.getElementById('videoIframe').src = '';
+  document.getElementById('videoModal').style.display = 'none';
+}
+
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') cerrarVideo();
+});
+
+// Cerrar al hacer clic fuera del video
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) cerrarVideo();
+});
+
+// update
