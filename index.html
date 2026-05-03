@@ -267,8 +267,8 @@
     <div class="portafolio-scroll-wrapper">
       <div class="portafolio-grid">
 
-        <div class="portafolio-card">
-          <div class="portafolio-img placeholder-img">
+        <div class="portafolio-card" data-video="1188724653?" data-plataforma="vimeo">
+          <div class="portafolio-img" style="background-image: url('img/portfolio-marca-a.jpg'); background-size: cover; background-position: center;">
             <div class="overlay">
               <span class="play-btn">▶</span>
               <p>Comercial — Marca A</p>
@@ -570,6 +570,15 @@
   </div>
 
   <script src="script.js"></script>
+
+  <!-- MODAL VIDEO PORTAFOLIO -->
+  <div id="videoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
+    <button onclick="cerrarVideo()" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">✕</button>
+    <div style="width:90%; max-width:900px; aspect-ratio:16/9;">
+      <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border-radius:12px;"></iframe>
+    </div>
+  </div>
+  
 </body>
 
 <svg style="position:absolute; width:0; height:0;" aria-hidden="true">
