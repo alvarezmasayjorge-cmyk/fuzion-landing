@@ -452,8 +452,18 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
   gap: 1.25rem; padding: 0 2rem;
   max-width: 1200px; margin: 0 auto;
 }
-.portafolio-card { border-radius: 16px; overflow: hidden; }
-.portafolio-img { position: relative; width: 100%; aspect-ratio: 16/10; }
+.portafolio-card { 
+  border-radius: 16px; 
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(232,0,13,0.25), 0 0 60px rgba(232,0,13,0.1);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.portafolio-card:hover {
+  box-shadow: 0 0 30px rgba(232,0,13,0.5), 0 0 80px rgba(232,0,13,0.2);
+  transform: translateY(-4px);
+}
+.portafolio-img { position: relative; width: 100%; aspect-ratio: 16/10; background-position: top center; background-size: cover; }
 .placeholder-img {
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);

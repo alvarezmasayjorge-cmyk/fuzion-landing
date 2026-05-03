@@ -41,7 +41,6 @@ const navbar = document.getElementById('navbar');
 urgencyBarClose?.addEventListener('click', () => {
   urgencyBar.classList.add('hidden');
   navbar.classList.add('bar-hidden');
-  // Esperar a que la transición termine y re-medir
   setTimeout(updateHeaderOffsets, 350);
 });
 document.getElementById('urgencyBarCta')?.addEventListener('click', openOfertaSection);
@@ -77,7 +76,6 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMen
 
 // ========== COUNTDOWN ==========
 function getEndOfWeek() {
-  // Próximo domingo a las 23:59:59
   const stored = localStorage.getItem('fuzion_countdown_end');
   if (stored) return new Date(parseInt(stored));
   const now = new Date();
@@ -102,7 +100,6 @@ function updateCountdown() {
 
   const pad = n => String(n).padStart(2, '0');
 
-  // Main section countdown
   const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   setEl('cdDays', pad(days)); setEl('cdHours', pad(hours)); setEl('cdMins', pad(mins)); setEl('cdSecs', pad(secs));
   setEl('pcdDays', pad(days)); setEl('pcdHours', pad(hours)); setEl('pcdMins', pad(mins)); setEl('pcdSecs', pad(secs));
@@ -111,7 +108,7 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// Spots counter — decrements realistically
+// Spots counter
 let spots = parseInt(localStorage.getItem('fuzion_spots') || '7');
 function decrementSpots() {
   if (spots > 1 && Math.random() < 0.3) {
@@ -140,7 +137,6 @@ document.getElementById('ofertaPopupClose')?.addEventListener('click', closeOfer
 document.getElementById('ofertaPopupSkip')?.addEventListener('click', closeOfertaPopup);
 ofertaPopup?.addEventListener('click', (e) => { if (e.target === ofertaPopup) closeOfertaPopup(); });
 
-// Mostrar popup a los 3.5s — solo una vez por sesión
 if (!sessionStorage.getItem('fuzion_popup_shown')) {
   setTimeout(() => {
     openOfertaPopup();
@@ -172,12 +168,10 @@ function closeFormModal() {
 document.getElementById('formModalClose')?.addEventListener('click', closeFormModal);
 formModal?.addEventListener('click', (e) => { if (e.target === formModal) closeFormModal(); });
 
-// Todos los botones con open-form-btn
 document.querySelectorAll('.open-form-btn').forEach(btn => {
   btn.addEventListener('click', openFormModal);
 });
 
-// El botón del popup lleva al modal
 document.getElementById('popupCtaBtn')?.addEventListener('click', (e) => {
   closeOfertaPopup();
   setTimeout(openFormModal, 200);
@@ -343,7 +337,8 @@ if (form) {
   });
 }
 
-// Portafolio — abrir video al hacer clic
+
+// ========== PORTAFOLIO VIDEO ==========
 document.querySelectorAll('.portafolio-card[data-video]').forEach(card => {
   card.style.cursor = 'pointer';
   card.addEventListener('click', () => {
@@ -363,14 +358,46 @@ function cerrarVideo() {
   document.getElementById('videoModal').style.display = 'none';
 }
 
-// Cerrar con Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') cerrarVideo();
 });
 
-// Cerrar al hacer clic fuera del video
-document.getElementById('videoModal').addEventListener('click', function(e) {
+document.getElementById('videoModal')?.addEventListener('click', function(e) {
   if (e.target === this) cerrarVideo();
 });
 
-// update
+// ========== HOVER PREVIEW VIMEO ==========
+document.querySelectorAll('.portafolio-card[data-plataforma="vimeo"]').forEach(card => {
+  const id = card.dataset.video;
+  const imgDiv = card.querySelector('.portafolio-img');
+
+  // Cargar miniatura
+  fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      imgDiv.style.backgroundImage = `url('${data.thumbnail_url}')`;
+      imgDiv.style.backgroundSize = 'cover';
+      imgDiv.style.backgroundPosition = 'center';
+    });
+
+  // Crear iframe oculto
+  const iframe = document.createElement('iframe');
+  iframe.src = '';
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allow', 'autoplay; muted');
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 0.4s;pointer-events:none;';
+  imgDiv.style.position = 'relative';
+  imgDiv.appendChild(iframe);
+
+  // Hover: reproducir
+  card.addEventListener('mouseenter', () => {
+    iframe.src = `https://player.vimeo.com/video/${id}?autoplay=1&muted=1&loop=1&controls=0&background=1`;
+    setTimeout(() => iframe.style.opacity = '1', 300);
+  });
+
+  // Salir: parar
+  card.addEventListener('mouseleave', () => {
+    iframe.style.opacity = '0';
+    setTimeout(() => iframe.src = '', 400);
+  });
+});
