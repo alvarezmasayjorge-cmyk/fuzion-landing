@@ -1,13 +1,12 @@
 # Sistema
 .DS_Store
 Thumbs.db
-
 # Editor
 .vscode/
 .idea/
-
 # Dependencias
 node_modules/
-
 # Logs
-*.log.claude
+*.log
+# Claude
+.claude
