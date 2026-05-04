@@ -76,14 +76,23 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMen
 
 // ========== COUNTDOWN ==========
 function getEndOfWeek() {
-  const stored = localStorage.getItem('fuzion_countdown_end');
-  if (stored) return new Date(parseInt(stored));
   const now = new Date();
-  const sunday = new Date(now);
-  sunday.setDate(now.getDate() + (7 - now.getDay()));
-  sunday.setHours(23, 59, 59, 0);
-  localStorage.setItem('fuzion_countdown_end', sunday.getTime().toString());
-  return sunday;
+  let stored = localStorage.getItem('fuzion_countdown_end');
+  let end;
+
+  if (stored) {
+    end = new Date(parseInt(stored));
+    if (end <= now) stored = null;
+  }
+
+  if (!stored) {
+    end = new Date(now);
+    const daysToSunday = 7 - now.getDay();
+    end.setDate(now.getDate() + (daysToSunday === 0 ? 7 : daysToSunday));
+    end.setHours(23, 59, 59, 0);
+    localStorage.setItem('fuzion_countdown_end', end.getTime().toString());
+  }
+  return end;
 }
 
 const endDate = getEndOfWeek();
