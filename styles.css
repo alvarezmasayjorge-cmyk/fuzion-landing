@@ -421,8 +421,9 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 /* ========== PROCESO ========== */
 .proceso { padding: 7rem 0; }
 .proceso-grid {
-  display: flex; align-items: center;
+  display: flex; align-items: stretch;
   gap: 1rem; margin-bottom: 1rem;
+  text-align: left;
 }
 .proceso-step {
   flex: 1;
@@ -982,7 +983,7 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 
   /* Proceso */
   .proceso { padding: 4rem 0; }
-  .proceso-grid { flex-direction: column; gap: 0.85rem; }
+  .proceso-grid { flex-direction: column; gap: 0.85rem; align-items: flex-start; text-align: left; }
   .proceso-arrow { display: none; }
   .proceso-step { padding: 1.5rem; }
   .proceso-num { font-size: 2rem; }
