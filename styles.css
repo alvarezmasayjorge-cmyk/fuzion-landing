@@ -529,24 +529,79 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 .carousel-dot.active { width: 22px; border-radius: 3px; background: var(--rojo); }
 
 /* ========== EQUIPO ========== */
-.equipo { padding: 7rem 0; background: var(--negro-card); }
+.equipo { padding: 7rem 0; background: var(--negro-card); overflow: hidden; }
 .equipo-scroll-wrapper { position: relative; }
 .equipo-grid {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 1.5rem; padding: 0 2rem;
-  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem; padding: 2rem;
+  max-width: 1300px; margin: 0 auto;
 }
 .equipo-card {
-  background: rgba(255,255,255,0.04); border-radius: 16px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
-  text-align: center; padding-bottom: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02); 
+  border-radius: 24px; 
+  border: 1px solid rgba(255,255,255,0.06); 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center; padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+  margin-top: 30px; /* Space for the head to pop out */
 }
-.equipo-card:hover { border-color: var(--rojo); transform: translateY(-6px); }
-.equipo-foto { width: 100%; aspect-ratio: 3/4; background: linear-gradient(160deg, #1f1f1f 0%, #2a0003 100%); margin-bottom: 1.25rem; }
-.placeholder-foto { background: linear-gradient(160deg, #1f1f1f 0%, #2a0003 100%); }
-.equipo-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; padding: 0 1rem; }
-.equipo-card p { font-size: 0.8rem; color: var(--rojo); text-transform: uppercase; letter-spacing: 1px; padding: 0 1rem; }
+.equipo-card:hover { 
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(232,0,13,0.3); 
+  transform: translateY(-8px); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.equipo-foto-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipo-foto-bg {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  background: linear-gradient(135deg, rgba(232,0,13,0.2) 0%, rgba(10,10,10,1) 100%);
+  border-radius: 50%;
+  border: 1px solid rgba(232,0,13,0.1);
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.equipo-foto {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 130%; /* Pop out height */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  margin-top: -30%; /* Shift up to pop out */
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.equipo-card:hover .equipo-foto-bg {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, rgba(232,0,13,0.4) 0%, rgba(20,0,2,1) 100%);
+  border-color: rgba(232,0,13,0.3);
+  box-shadow: 0 0 30px rgba(232,0,13,0.2);
+}
+
+.equipo-card:hover .equipo-foto {
+  transform: translateY(-10px) scale(1.05);
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+}
+
+.equipo-card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--blanco); }
+.equipo-card p { font-size: 0.75rem; color: var(--rojo); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
 
 /* ========== TESTIMONIOS ========== */
 .testimonios { padding: 7rem 0; }
@@ -1005,18 +1060,19 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 
   /* Equipo scroll carousel */
   .equipo { padding: 4rem 0; }
-  .equipo .container { margin-bottom: 1.5rem; }
+  .equipo .container { margin-bottom: 2rem; }
   .equipo-grid {
     display: flex; overflow-x: auto;
     scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; gap: 0.85rem;
-    padding: 0.25rem 1.5rem 0.5rem; max-width: none; margin: 0;
+    scrollbar-width: none; gap: 1rem;
+    padding: 2.5rem 1.5rem 1.5rem; max-width: none; margin: 0;
   }
   .equipo-grid::-webkit-scrollbar { display: none; }
-  .equipo-card { flex: 0 0 44vw; max-width: 180px; scroll-snap-align: start; border-radius: 14px; }
-  .equipo-foto { aspect-ratio: 2/3; }
-  .equipo-card h4 { font-size: 0.82rem; }
-  .equipo-card p { font-size: 0.68rem; }
+  .equipo-card { flex: 0 0 70vw; max-width: 260px; scroll-snap-align: center; border-radius: 20px; padding: 1.25rem; margin-top: 20px; }
+  .equipo-foto-wrapper { margin-bottom: 1rem; }
+  .equipo-foto { height: 120%; margin-top: -20%; }
+  .equipo-card h4 { font-size: 1rem; }
+  .equipo-card p { font-size: 0.7rem; }
 
   /* Testimonios */
   .testimonios { padding: 4rem 0; }
