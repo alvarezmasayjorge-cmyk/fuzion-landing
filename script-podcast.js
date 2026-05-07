@@ -175,7 +175,7 @@ if (form) {
 
     // Función para enviar a Google Sheets
     const sendToSheets = async (data) => {
-      const scriptURL = 'TU_URL_DE_GOOGLE_SHEETS_AQUI'; // Reemplazar con el URL de Google Apps Script
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbylnPqWP5PnsGOr3S8cU2-k-iI__5_Wv6vsPUCu1c4VJoPtag8sz7tQhwkiTkPDWFdp/exec';
       if (!scriptURL || scriptURL.includes('TU_URL')) return;
       try {
         await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
