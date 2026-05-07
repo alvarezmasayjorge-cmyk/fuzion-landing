@@ -156,12 +156,34 @@ const form = document.getElementById('form-contacto-podcast');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const numeroWhatsApp = '59170000000'; // Reemplazar con el número real
+    const numeroWhatsApp = '59160007720';
     const fields = form.querySelectorAll('input, select');
     const nombre = fields[0].value;
     const telefono = fields[1].value;
     const plan = fields[2].value;
     const tema = fields[3].value;
+
+    // Datos para Google Sheets
+    const formData = {
+      fecha: new Date().toLocaleString(),
+      nombre: nombre,
+      whatsapp: telefono,
+      plan: plan,
+      tema: tema,
+      pagina: 'Podcast'
+    };
+
+    // Función para enviar a Google Sheets
+    const sendToSheets = async (data) => {
+      const scriptURL = 'TU_URL_DE_GOOGLE_SHEETS_AQUI'; // Reemplazar con el URL de Google Apps Script
+      if (!scriptURL || scriptURL.includes('TU_URL')) return;
+      try {
+        await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+      } catch (error) { console.error('Error!', error.message); }
+    };
+
+    // Enviar a Sheets en segundo plano
+    sendToSheets(formData);
 
     let txt = `¡Hola Fuzion Studio! 🎙️%0A%0A`;
     txt += `Quiero saber más sobre el servicio de Podcast.%0A%0A`;

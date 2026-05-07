@@ -311,7 +311,7 @@ const form = document.getElementById('form-contacto');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const numeroWhatsApp = '59170000000';
+    const numeroWhatsApp = '59160007720';
     const fields = form.querySelectorAll('input, select, textarea');
     const nombre = fields[0].value;
     const empresa = fields[1].value;
@@ -319,6 +319,30 @@ if (form) {
     const telefono = fields[3].value;
     const servicio = fields[4].value;
     const mensaje = fields[5].value;
+
+    // Datos para Google Sheets
+    const formData = {
+      fecha: new Date().toLocaleString(),
+      nombre: nombre,
+      empresa: empresa,
+      email: email,
+      whatsapp: telefono,
+      servicio: servicio,
+      mensaje: mensaje,
+      pagina: 'Main'
+    };
+
+    // Función para enviar a Google Sheets
+    const sendToSheets = async (data) => {
+      const scriptURL = 'TU_URL_DE_GOOGLE_SHEETS_AQUI'; // Reemplazar con el URL de Google Apps Script
+      if (!scriptURL || scriptURL.includes('TU_URL')) return;
+      try {
+        await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+      } catch (error) { console.error('Error!', error.message); }
+    };
+
+    // Enviar a Sheets en segundo plano
+    sendToSheets(formData);
 
     let txt = `¡Hola Fuzion Studio! 🎬%0A%0A`;
     txt += `*Nombre:* ${nombre}%0A`;
