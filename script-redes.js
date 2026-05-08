@@ -130,56 +130,6 @@ if (!isMobile()) {
   });
 }
 
-// ========== META CAPI FRONTEND ==========
-async function hashSHA256(string) {
-  const utf8 = new TextEncoder().encode(string);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function sendMetaCAPI(nombre, telefono, email = '') {
-  const PIXEL_ID = '1012480207957572';
-  const ACCESS_TOKEN = 'EAAR5d3QbBocBRc9t2CQ6C4sOTJZC8HZASWyWOKERDikhYwZAKh18GyKtTiyLU387U5HxnPZB9TZBYwF7utMGT4ALIulZAdEZAwQHYChrea4tueugDjyWPZAoY1GUxsySALofK3mIFrIACoYZCr1dJXfnEa8i5aXJUf2MRDoxBZAy9YeEu3eOxM2Xu8vaBw5t7eewZDZD';
-  const TEST_CODE = 'TEST72455';
-
-  const cleanPhone = telefono ? telefono.toString().replace(/\D/g, '') : '';
-  const cleanName = nombre ? nombre.split(' ')[0].toLowerCase().trim() : '';
-  const cleanEmail = email ? email.toLowerCase().trim() : '';
-
-  const userData = {
-    client_user_agent: navigator.userAgent
-  };
-
-  if (cleanPhone) userData.ph = [await hashSHA256(cleanPhone)];
-  if (cleanName) userData.fn = [await hashSHA256(cleanName)];
-  if (cleanEmail) userData.em = [await hashSHA256(cleanEmail)];
-
-  const payload = {
-    data: [{
-      event_name: 'Lead',
-      event_time: Math.floor(Date.now() / 1000),
-      action_source: 'website',
-      event_source_url: window.location.href,
-      user_data: userData
-    }],
-    test_event_code: TEST_CODE
-  };
-
-  const url = `https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`;
-  
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    console.log("Meta CAPI Frontend Response:", await response.json());
-  } catch (error) {
-    console.error("Meta CAPI Frontend Error:", error);
-  }
-}
-
 // ========== GLITCH ==========
 const glitchEl = document.querySelector('.glitch');
 if (glitchEl) {
@@ -225,7 +175,7 @@ if (form) {
 
     // Función para enviar a Google Sheets
     const sendToSheets = async (data) => {
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbwwi4qMQnqV1mTiKpvKjcYAosktHKAL0BLcLCNF_0MyRhkQMmH_3YGne7suTYhahq90/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycby6lRMNfhAcaf8y-c059GIO5IgI22xu89lfMtDm06E05HPAkmQH0FFX66uqyIfQKMZb/exec';
       if (!scriptURL || scriptURL.includes('TU_URL')) return;
       try {
         await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
@@ -234,9 +184,6 @@ if (form) {
 
     // Enviar a Sheets en segundo plano
     sendToSheets(formData);
-
-    // Enviar a Meta CAPI
-    sendMetaCAPI(nombre, telefono);
 
     let txt = `¡Hola Fuzion Studio! 📱%0A%0A`;
     txt += `Quiero saber más sobre los paquetes de Videos para Redes.%0A%0A`;

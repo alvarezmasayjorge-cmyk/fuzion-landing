@@ -175,7 +175,7 @@ if (form) {
 
     // Función para enviar a Google Sheets
     const sendToSheets = async (data) => {
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbwwi4qMQnqV1mTiKpvKjcYAosktHKAL0BLcLCNF_0MyRhkQMmH_3YGne7suTYhahq90/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycby6lRMNfhAcaf8y-c059GIO5IgI22xu89lfMtDm06E05HPAkmQH0FFX66uqyIfQKMZb/exec';
       if (!scriptURL || scriptURL.includes('TU_URL')) return;
       try {
         await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
@@ -184,9 +184,6 @@ if (form) {
 
     // Enviar a Sheets en segundo plano
     sendToSheets(formData);
-
-    // Enviar a Meta CAPI
-    sendMetaCAPI(nombre, telefono);
 
     let txt = `¡Hola Fuzion Studio! 🎙️%0A%0A`;
     txt += `Quiero saber más sobre el servicio de Podcast.%0A%0A`;
