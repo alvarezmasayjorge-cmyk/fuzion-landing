@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Gracias! | Fuzion Studio</title>
+  <link rel="icon" type="image/png" href="img/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --negro-deep: #050505;
+      --rojo: #e8000d;
+      --rojo-brillante: #ff1a1a;
+      --gris: #a0a0a0;
+      --blanco: #ffffff;
+    }
+
+    body {
+      background: var(--negro-deep);
+      color: var(--blanco);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .thanks-container {
+      max-width: 600px;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .icon-box {
+      width: 80px;
+      height: 80px;
+      background: rgba(232, 0, 13, 0.1);
+      border: 2px solid var(--rojo);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 0, 13, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(232, 0, 13, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 0, 13, 0); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    p {
+      color: var(--gris);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .redirect-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 16px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .countdown {
+      font-weight: 700;
+      color: var(--rojo);
+      font-size: 1.4rem;
+    }
+
+    .btn-wa {
+      display: block;
+      margin-top: 2rem;
+      color: var(--gris);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .btn-wa:hover {
+      color: var(--blanco);
+    }
+
+    /* Fondo decorativo */
+    .orb {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232, 0, 13, 0.15) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 1;
+    }
+
+    .orb-1 { top: -100px; right: -100px; }
+    .orb-2 { bottom: -100px; left: -100px; }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1012480207957572');
+  fbq('track', 'PageView');
+  fbq('track', 'Lead');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1012480207957572&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="thanks-container">
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h1>¡Todo listo!</h1>
+    <p>Hemos recibido tus datos correctamente. Un miembro de nuestro equipo se pondrá en contacto contigo muy pronto.</p>
+
+    <div class="redirect-box">
+      Te estamos redirigiendo a WhatsApp en <span id="timer" class="countdown">5</span> segundos...
+    </div>
+
+    <a href="#" id="waLink" class="btn-wa">Si no eres redirigido, haz clic aquí</a>
+  </div>
+
+  <script>
+    // Recuperar el link de WhatsApp generado en la página anterior
+    const waUrl = sessionStorage.getItem('lastWaUrl') || 'https://wa.me/59160007720';
+    document.getElementById('waLink').href = waUrl;
+
+    let seconds = 5;
+    const timerEl = document.getElementById('timer');
+
+    const interval = setInterval(() => {
+      seconds--;
+      timerEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = waUrl;
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>

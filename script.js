@@ -358,14 +358,12 @@ if (form) {
     btn.disabled = true;
 
     setTimeout(() => {
-      window.open(`https://wa.me/${numeroWhatsApp}?text=${txt}`, '_blank');
-      setTimeout(() => {
-        form.reset();
-        btn.textContent = 'Quiero mi cotización GRATIS →';
-        btn.style.background = '';
-        btn.disabled = false;
-        closeFormModal();
-      }, 1000);
+      // Guardamos la URL para la página de agradecimiento
+      const waUrl = `https://wa.me/${numeroWhatsApp}?text=${txt}`;
+      sessionStorage.setItem('lastWaUrl', waUrl);
+      
+      // Redirigimos a la Thank You Page para tracking
+      window.location.href = 'gracias.html';
     }, 600);
   });
 }

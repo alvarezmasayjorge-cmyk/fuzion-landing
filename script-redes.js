@@ -152,7 +152,7 @@ if (mobileBottomBar) {
 }
 
 // ========== FORMULARIO → WHATSAPP ==========
-const form = document.getElementById('form-contacto-podcast');
+const form = document.getElementById('form-contacto-redes');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -170,7 +170,7 @@ if (form) {
       whatsapp: telefono,
       plan: plan,
       tema: tema,
-      pagina: 'Podcast'
+      pagina: 'Redes Sociales'
     };
 
     // Función para enviar a Google Sheets
@@ -185,12 +185,12 @@ if (form) {
     // Enviar a Sheets en segundo plano
     sendToSheets(formData);
 
-    let txt = `¡Hola Fuzion Studio! 🎙️%0A%0A`;
-    txt += `Quiero saber más sobre el servicio de Podcast.%0A%0A`;
+    let txt = `¡Hola Fuzion Studio! 🎥%0A%0A`;
+    txt += `Quiero saber más sobre los paquetes de Videos para Redes.%0A%0A`;
     txt += `*Nombre:* ${nombre}%0A`;
     txt += `*WhatsApp:* ${telefono}%0A`;
-    txt += `*Plan de interés:* ${plan}%0A`;
-    txt += `*Tema definido:* ${tema}`;
+    txt += `*Paquete de interés:* ${plan}%0A`;
+    txt += `*Estado de marca:* ${tema}`;
 
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Abriendo WhatsApp... 💬';
