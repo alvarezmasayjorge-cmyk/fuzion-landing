@@ -329,7 +329,9 @@ if (form) {
       whatsapp: telefono,
       servicio: servicio,
       mensaje: mensaje,
-      pagina: 'Main'
+      pagina: 'Main',
+      userAgent: navigator.userAgent,
+      url: window.location.href
     };
 
     // Función para enviar a Google Sheets

@@ -170,7 +170,9 @@ if (form) {
       whatsapp: telefono,
       plan: plan,
       tema: tema,
-      pagina: 'Podcast'
+      pagina: 'Podcast',
+      userAgent: navigator.userAgent,
+      url: window.location.href
     };
 
     // Función para enviar a Google Sheets
