@@ -344,6 +344,9 @@ if (form) {
     // Enviar a Sheets en segundo plano
     sendToSheets(formData);
 
+    // Enviar a Meta CAPI
+    sendMetaCAPI(nombre, telefono, email);
+
     let txt = `¡Hola Fuzion Studio! 🎬%0A%0A`;
     txt += `*Nombre:* ${nombre}%0A`;
     if (empresa) txt += `*Empresa:* ${empresa}%0A`;
@@ -432,3 +435,53 @@ document.querySelectorAll('.portafolio-card[data-plataforma="vimeo"]').forEach(c
     setTimeout(() => iframe.src = '', 400);
   });
 });
+
+// ========== META CAPI FRONTEND ==========
+async function hashSHA256(string) {
+  const utf8 = new TextEncoder().encode(string);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function sendMetaCAPI(nombre, telefono, email = '') {
+  const PIXEL_ID = '1012480207957572';
+  const ACCESS_TOKEN = 'EAAR5d3QbBocBRc9t2CQ6C4sOTJZC8HZASWyWOKERDikhYwZAKh18GyKtTiyLU387U5HxnPZB9TZBYwF7utMGT4ALIulZAdEZAwQHYChrea4tueugDjyWPZAoY1GUxsySALofK3mIFrIACoYZCr1dJXfnEa8i5aXJUf2MRDoxBZAy9YeEu3eOxM2Xu8vaBw5t7eewZDZD';
+  const TEST_CODE = 'TEST72455';
+
+  const cleanPhone = telefono ? telefono.toString().replace(/\D/g, '') : '';
+  const cleanName = nombre ? nombre.split(' ')[0].toLowerCase().trim() : '';
+  const cleanEmail = email ? email.toLowerCase().trim() : '';
+
+  const userData = {
+    client_user_agent: navigator.userAgent
+  };
+
+  if (cleanPhone) userData.ph = [await hashSHA256(cleanPhone)];
+  if (cleanName) userData.fn = [await hashSHA256(cleanName)];
+  if (cleanEmail) userData.em = [await hashSHA256(cleanEmail)];
+
+  const payload = {
+    data: [{
+      event_name: 'Lead',
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: 'website',
+      event_source_url: window.location.href,
+      user_data: userData
+    }],
+    test_event_code: TEST_CODE
+  };
+
+  const url = `https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`;
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    console.log("Meta CAPI Frontend Response:", await response.json());
+  } catch (error) {
+    console.error("Meta CAPI Frontend Error:", error);
+  }
+}

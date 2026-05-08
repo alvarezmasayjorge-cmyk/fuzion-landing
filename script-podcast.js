@@ -185,6 +185,9 @@ if (form) {
     // Enviar a Sheets en segundo plano
     sendToSheets(formData);
 
+    // Enviar a Meta CAPI
+    sendMetaCAPI(nombre, telefono);
+
     let txt = `¡Hola Fuzion Studio! 🎙️%0A%0A`;
     txt += `Quiero saber más sobre el servicio de Podcast.%0A%0A`;
     txt += `*Nombre:* ${nombre}%0A`;
