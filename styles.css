@@ -711,12 +711,24 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 }
 .oferta-disclaimer strong { color: var(--rojo); }
 
+/* ========== CTA FINAL ========== */
+.cta-final { padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+.cta-final h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; color: #fff; margin-bottom: 1rem; }
+.cta-final p { color: rgba(255,255,255,0.85); font-size: 1.15rem; }
+.btn-blanco {
+  display: inline-block; padding: 1rem 2.5rem; background: #fff; color: #050505; font-weight: 700;
+  font-size: 1.05rem; border: none; border-radius: 8px; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  text-decoration: none;
+}
+.btn-blanco:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(255,255,255,0.2); background: #f0f0f0; }
+
 /* ========== FOOTER ========== */
-.footer { padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
-.footer .logo { align-items: center; margin-bottom: 1rem; }
+.footer { padding: 4rem 0 3rem; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; background: #050505; }
+.footer .logo { align-items: center; margin-bottom: 1.5rem; display: flex; justify-content: center; }
 .footer p { color: var(--gris); font-size: 0.85rem; margin-bottom: 1.25rem; }
-.footer-links { display: flex; justify-content: center; gap: 2rem; }
-.footer-links a { color: var(--gris); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; cursor: pointer; background: none; border: none; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; cursor: pointer; background: none; border: none; }
 .footer-links a:hover { color: var(--rojo); }
 
 /* ========== CURSOR ========== */
