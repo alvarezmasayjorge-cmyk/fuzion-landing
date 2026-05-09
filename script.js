@@ -39,8 +39,8 @@ const urgencyBarClose = document.getElementById('urgencyBarClose');
 const navbar = document.getElementById('navbar');
 
 urgencyBarClose?.addEventListener('click', () => {
-  urgencyBar.classList.add('hidden');
-  navbar.classList.add('bar-hidden');
+  urgencyBar?.classList.add('hidden');
+  navbar?.classList.add('bar-hidden');
   setTimeout(updateHeaderOffsets, 350);
 });
 document.getElementById('urgencyBarCta')?.addEventListener('click', openOfertaSection);
@@ -134,10 +134,12 @@ setInterval(decrementSpots, 90000);
 const ofertaPopup = document.getElementById('ofertaPopup');
 
 function openOfertaPopup() {
+  if (!ofertaPopup) return;
   ofertaPopup.classList.add('open');
   document.body.classList.add('modal-open');
 }
 function closeOfertaPopup() {
+  if (!ofertaPopup) return;
   ofertaPopup.classList.remove('open');
   document.body.classList.remove('modal-open');
 }
@@ -146,7 +148,7 @@ document.getElementById('ofertaPopupClose')?.addEventListener('click', closeOfer
 document.getElementById('ofertaPopupSkip')?.addEventListener('click', closeOfertaPopup);
 ofertaPopup?.addEventListener('click', (e) => { if (e.target === ofertaPopup) closeOfertaPopup(); });
 
-if (!sessionStorage.getItem('fuzion_popup_shown')) {
+if (ofertaPopup && !sessionStorage.getItem('fuzion_popup_shown')) {
   setTimeout(() => {
     openOfertaPopup();
     sessionStorage.setItem('fuzion_popup_shown', '1');
