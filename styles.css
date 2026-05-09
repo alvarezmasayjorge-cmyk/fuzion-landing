@@ -226,9 +226,8 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; mar
 .hero-bg-gradient {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at top right, rgba(232,0,13,0.22), transparent 50%),
-    radial-gradient(ellipse at bottom left, rgba(232,0,13,0.12), transparent 50%),
-    var(--negro);
+    radial-gradient(ellipse at top right, rgba(232,0,13,0.15), transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(232,0,13,0.08), transparent 50%);
   z-index: 0;
 }
 .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.55; z-index: 0; animation: float-orb 12s ease-in-out infinite; }
